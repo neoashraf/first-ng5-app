@@ -11,3 +11,39 @@
     {{course}}
   </li>
 </ul>
+
+<!-- <img src="{{carImage}}"/>   -->
+<!-- property binding-one way -->
+<p [textContent]="CarAName"></p>   
+
+<!-- attribute binding -->
+<table>
+  <tr>
+    <td [attr.colspan]="CarName"></td>        
+  </tr>
+</table>
+<!-- three variations of property binding -->
+<!-- class binding -->
+<button class="btn btn-primary" [class.active]="isActive">Save</button>
+<!-- style binding -->
+<button [style.background] = "isActive?'red':'yellow'">Save</button>
+<!-- event binding -->
+<div (click)="onDivClicked()">
+  <button (click)="onSave($event)">Save</button>
+</div>
+<!-- event filtering .  
+Here we want to console on press of enter. 
+Logic- send the $event and check $event.keycode. 
+Angular saves pain lets us filter using .(name) -->
+<input (keyup.enter)="onKeyUpCheck1()"/>
+
+<!-- task -->
+<!-- catch the value in the input field -->
+
+<input (keyup.enter)="onKeyUpCheck2($event)"/>
+<!-- better solution using template variable -->
+<input #inputValue (keyup.enter)="onKeyUpcheck3(inputValue.value)"/>
+<!-- property binding one way but inputValue = $event.target.value tries to make it two way.  We will use ngModel-->
+<!-- <input [value]= "inputValue" (keyup.enter) = " inputValue = $event.target.value onKeyUpcheck4()"/> -->
+<!-- two way binding -->
+<input [(ngModel)]= "inputValueAnother" (keyup.enter)="onKeyUpcheck5()"/>
